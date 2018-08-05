@@ -4,6 +4,7 @@ Author: Shruti Sharma (shruti_sml@yahoo.com)
 Date: August 05, 2018
 
 This directory contains all the codes for the paper:
+
 Shruti Sharma, Santanu Chaudhury, Jayadeva, "Variational Bayes Block Sparse Modeling with Correlated Entries", ICPR-2018.
 
 Codes were tested under MATLAB R2017(a) on Windows 10 platform. 
@@ -17,3 +18,7 @@ CSVB.m is implementation of the proposed framework. The command CSVB is fed with
 SVB command can be used in the similar fashion. For more details on SVB variants, kindly refer the following paper: 
 
 [1] Babacan S.D., et al.,'Bayesian Group-Sparse Modeling and Variational Inference',IEEE Trans. on  Sig. Proc., vol. 62, no. 11, pp. 2906-2921, 2014. 
+
+Comparisons in the paper are made with SVB variants and BSBL variants. Codes for BSBL variants can be downloaded from: 
+
+https://sites.google.com/site/researchbyzhang/publications
