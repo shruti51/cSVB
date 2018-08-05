@@ -19,6 +19,10 @@ SVB command can be used in the similar fashion. For more details on SVB variants
 
 [1] Babacan S.D., et al.,'Bayesian Group-Sparse Modeling and Variational Inference',IEEE Trans. on  Sig. Proc., vol. 62, no. 11, pp. 2906-2921, 2014. 
 
+For more details on FECG experiments, kindly refer the following paper:
+
+[1] Zhang Z., et al., "Compressed Sensing of Energy Efficient Wireless Telemonitoring of Noninvasive Fetal ECG Via Block Sparse Learning", IEEE Trans. on Biomed. Engg., Vol. 60, No. 2, pp. 300-309, 2013.
+
 Comparisons in the paper are made with SVB variants and BSBL variants. Codes for BSBL variants can be downloaded from: 
 
 https://sites.google.com/site/researchbyzhang/publications
