@@ -1,4 +1,5 @@
 Demo Codes for Variational Bayes Block Sparse Modeling with Correlated Entries
+
 Author: Shruti Sharma (shruti_sml@yahoo.com)
 Date: August 05, 2018
 
@@ -14,4 +15,5 @@ CSVB.m is implementation of the proposed framework. The command CSVB is fed with
 [Result]=CSVB(Phi,y,grouping,block_size,status,marg)
 
 SVB command can be used in the similar fashion. For more details on SVB variants, kindly refer the following paper: 
+
 [1] Babacan S.D., et al.,'Bayesian Group-Sparse Modeling and Variational Inference',IEEE Trans. on  Sig. Proc., vol. 62, no. 11, pp. 2906-2921, 2014. 
