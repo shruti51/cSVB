@@ -47,7 +47,7 @@ for rho=0.99
         err_Jeffrey_svb=0; err_Laplace_svb=0; err_St_svb=0;
         % err_BSBL_BO=0; err_BSBL_EM=0;
         
-        for k=1:1000
+        for k=1:100
             k
             % Correlated Input Generation Block using AR(1) process with
             % correlation coefficient
