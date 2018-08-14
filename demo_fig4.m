@@ -248,7 +248,7 @@ hold on
 semilogy(0.1:0.05:0.5,err(:,6),'k--o')
 a_t=title('\rho=0.8, Group Size=3, SNR=25dB');
 set(a_t,'FontSize',12,'FontWeight','bold')
-a_l=legend({'BSBL-EM';'BSBL-BO';'cJSVB';'JSVB'; 'cLSVB';'LSVB';'cStSVB'; 'StSVB'});
+a_l=legend({'cJSVB';'JSVB'; 'cLSVB';'LSVB';'cStSVB'; 'StSVB'});
 set(a_l,'FontSize',10,'FontWeight','bold');
 a_y=ylabel(' Relative Reconstruction Error');
 set(a_y,'FontSize',12,'FontWeight','bold');
@@ -256,24 +256,20 @@ xlabel('M/N');
 set(gca,'XTick', [0.1:0.05:0.5], 'FontSize',12,'FontWeight','bold');
 
 figure
-plot(0.1:0.05:0.5,(1-(succ(:,1)/k)),'-.r*')
+plot(0.1:0.05:0.5,(1-(succ(:,1)/k)),'-.b*')
 hold on
-plot(0.1:0.05:0.5,(1-(succ(:,2)/k)),'r--o')
+plot(0.1:0.05:0.5,(1-(succ(:,2)/k)),'b--o')
 hold on
-plot(0.1:0.05:0.5,(1-(succ(:,3)/k)),'-.b*')
+plot(0.1:0.05:0.5,(1-(succ(:,3)/k)),'-.g*')
 hold on
-plot(0.1:0.05:0.5,(1-(succ(:,4)/k)),'b--o')
+plot(0.1:0.05:0.5,(1-(succ(:,4)/k)),'g--o')
 hold on
-plot(0.1:0.05:0.5,(1-(succ(:,5)/k)),'-.g*')
+plot(0.1:0.05:0.5,(1-(succ(:,5)/k)),'-.k*')
 hold on
-plot(0.1:0.05:0.5,(1-(succ(:,6)/k)),'g--o')
-hold on
-plot(0.1:0.05:0.5,(1-(succ(:,7)/k)),'-.k*')
-hold on
-plot(0.1:0.05:0.5,(1-(succ(:,8)/k)),'k--o')
+plot(0.1:0.05:0.5,(1-(succ(:,6)/k)),'k--o')
 a_t=title('\rho=0.99, Group Size=3, SNR=25dB');
 set(a_t,'FontSize',12,'FontWeight','bold')
-a_l=legend({'BSBL-BO';'BSBL-EM';'cJSVB';'JSVB'; 'cLSVB';'LSVB';'cStSVB'; 'StSVB'});
+a_l=legend({'cJSVB';'JSVB'; 'cLSVB';'LSVB';'cStSVB'; 'StSVB'});
 set(a_l,'FontSize',10,'FontWeight','bold');
 a_y=ylabel('Failure rate');
 set(a_y,'FontSize',12,'FontWeight','bold');
