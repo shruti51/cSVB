@@ -1,5 +1,8 @@
 function [x,index]=correlated_input(beta,N,no_of_nonzero_coeff,group_size)
 
+
+
+
 x=zeros(N,1);
 
 % No of non zero groups
