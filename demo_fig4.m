@@ -1,6 +1,6 @@
-% This code aims to reproduce the results corresponding to Fig.4 
+% This code aims to reproduce the results corresponding to Fig.4
 % of the below mentioned paper which proposes the correlated sparse
-% variational bayes framework for block sparse signal recovery. 
+% variational bayes framework for block sparse signal recovery.
 %
 % Author: Shruti Sharma
 % Paper: Shruti Sharma, Santanu Chaudhury, Jayadeva, ' Variational
@@ -9,11 +9,11 @@
 % To reproduce Fig.4, we set status=1 which corresponds to signal with
 % SNR=25dB and block_size=3. Value of \rho can be varied from 0 to 1.
 % In the paper, we have used \rho=0,0.7 and 0.99  and used 1000 independent trials
-% to validate the results. Comparisons in the paper are made w.r.t. BSBL-BO, BSBL-EM 
+% to validate the results. Comparisons in the paper are made w.r.t. BSBL-BO, BSBL-EM
 % Reference: Zhang Z., Rao B.D., 'Extension of SBL Algorithms for the Recovery of Block Sparse
 % Signals With Intra-Block Correlation', IEEE Trans. on Sig. Proc., vol. 1, no. 8, pp. 2009-2015. 2013)
-% and the variants of sparse variational bayes SVB 
-% Reference: Babacan S.D., et al.,'Bayesian Group-Sparse Modeling and Variational 
+% and the variants of sparse variational bayes SVB
+% Reference: Babacan S.D., et al.,'Bayesian Group-Sparse Modeling and Variational
 % Inference',IEEE Trans. on  Sig. Proc., vol. 62, no. 11, pp. 2906-2921, 2014).
 %
 % Codes for  BSBL-BO and BSBL-EM can be downloaded from
@@ -32,21 +32,19 @@ else
     threshold=1e-1;
 end
 
-succ=[]; err=[];
-for rho=0.99
+for rho=[0 0.7 0.99]
     rho
+    succ=[]; err=[];
     
     for ratio=0.1:0.05:0.5
         ratio
         M=floor(N*ratio);
-        
         succ_JTSVB=0; succ_LTSVB=0; succ_StTSVB=0;
         succ_JSVB=0; succ_LSVB=0; succ_StSVB=0;
         % succ_BSBL_BO=0; succ_BSBL_EM=0;
         err_Jeffrey_tsvb=0; err_Laplace_tsvb=0; err_St_tsvb=0;
         err_Jeffrey_svb=0; err_Laplace_svb=0; err_St_svb=0;
         % err_BSBL_BO=0; err_BSBL_EM=0;
-        
         for k=1:100
             k
             % Correlated Input Generation Block using AR(1) process with
@@ -72,41 +70,41 @@ for rho=0.99
                 y=Signal+ v;
             end
             
-%             groupStartLoc = 1:block_size:N;
-%             
-%             Result1 = BSBL_BO(Phi,y,groupStartLoc,2);
-%             a = norm( Result1.x - x_gen , 'fro') / norm( x_gen , 'fro');
-%             supp_1=setdiff(Result1.gamma_used,actual_supp);
-%             supp_2=setdiff(actual_supp,Result1.gamma_used); 
-%             if isempty(supp_1)==1 && isempty(supp_2)==1
-%                 succ_BSBL_BO=succ_BSBL_BO+1;
-%             else
-%                 t=intersect(Result1.gamma_used,actual_supp);
-%                 if length(t)==K
-%                     if a < threshold
-%                         succ_BSBL_BO=succ_BSBL_BO+1;
-%                     end
-%                 end
-%             end
-%             err_BSBL_BO =err_BSBL_BO+ a;
-%             
-%             Result2 = BSBL_EM(Phi,y,groupStartLoc,2);
-%             a = norm( Result2.x - x_gen , 'fro') / norm( x_gen , 'fro');
-%             supp_1=setdiff(Result2.gamma_used,actual_supp);
-%             supp_2=setdiff(actual_supp,Result2.gamma_used);
-%             c_B_E=[c_B_E Result2.count];
-%             if isempty(supp_1)==1 && isempty(supp_2)==1
-%                 succ_BSBL_EM=succ_BSBL_EM+1;
-%             else
-%                 t=intersect(Result2.gamma_used,actual_supp);
-%                 if length(t)==K
-%                     if a < threshold
-%                         succ_BSBL_EM=succ_BSBL_EM+1;
-%                     end
-%                 end
-%             end
-%             err_BSBL_EM =err_BSBL_EM+ a;
-             
+            %             groupStartLoc = 1:block_size:N;
+            %
+            %             Result1 = BSBL_BO(Phi,y,groupStartLoc,2);
+            %             a = norm( Result1.x - x_gen , 'fro') / norm( x_gen , 'fro');
+            %             supp_1=setdiff(Result1.gamma_used,actual_supp);
+            %             supp_2=setdiff(actual_supp,Result1.gamma_used);
+            %             if isempty(supp_1)==1 && isempty(supp_2)==1
+            %                 succ_BSBL_BO=succ_BSBL_BO+1;
+            %             else
+            %                 t=intersect(Result1.gamma_used,actual_supp);
+            %                 if length(t)==K
+            %                     if a < threshold
+            %                         succ_BSBL_BO=succ_BSBL_BO+1;
+            %                     end
+            %                 end
+            %             end
+            %             err_BSBL_BO =err_BSBL_BO+ a;
+            %
+            %             Result2 = BSBL_EM(Phi,y,groupStartLoc,2);
+            %             a = norm( Result2.x - x_gen , 'fro') / norm( x_gen , 'fro');
+            %             supp_1=setdiff(Result2.gamma_used,actual_supp);
+            %             supp_2=setdiff(actual_supp,Result2.gamma_used);
+            %             c_B_E=[c_B_E Result2.count];
+            %             if isempty(supp_1)==1 && isempty(supp_2)==1
+            %                 succ_BSBL_EM=succ_BSBL_EM+1;
+            %             else
+            %                 t=intersect(Result2.gamma_used,actual_supp);
+            %                 if length(t)==K
+            %                     if a < threshold
+            %                         succ_BSBL_EM=succ_BSBL_EM+1;
+            %                     end
+            %                 end
+            %             end
+            %             err_BSBL_EM =err_BSBL_EM+ a;
+            
             %% TSVB
             % Jeffrey cSVB
             [Result_cJ]=CSVB(Phi,y,grouping,block_size,status,1);
@@ -142,7 +140,7 @@ for rho=0.99
                 end
             end
             err_Laplace_tsvb =err_Laplace_tsvb+ a;
-        
+            
             %  Student cSVB
             [Result_cSt]=CSVB(Phi,y,grouping,block_size,status,3);
             a= norm( Result_cSt.x - x_gen , 'fro') / norm( x_gen , 'fro');
@@ -183,7 +181,7 @@ for rho=0.99
             a = norm(Result_L.x - x_gen , 'fro') / norm( x_gen , 'fro');
             supp_1=setdiff(Result_L.z,supp_actual);
             supp_2=setdiff(supp_actual,Result_L.z);
-
+            
             if isempty(supp_1)==1 && isempty(supp_2)==1
                 succ_LSVB=succ_LSVB+1;
             else
@@ -212,67 +210,69 @@ for rho=0.99
                 end
             end
             err_St_svb =err_St_svb+ a;
- %           succ=[succ; [succ_BSBL_EM succ_BSBL_BO succ_JTSVB succ_JSVB succ_LTSVB succ_LSVB succ_StTSVB succ_StSVB]];
+            %           succ=[succ; [succ_BSBL_EM succ_BSBL_BO succ_JTSVB succ_JSVB succ_LTSVB succ_LSVB succ_StTSVB succ_StSVB]];
         end
-%       succ=[succ; [succ_BSBL_EM succ_BSBL_BO succ_JTSVB succ_JSVB succ_LTSVB succ_LSVB succ_StTSVB succ_StSVB]]
+        %       succ=[succ; [succ_BSBL_EM succ_BSBL_BO succ_JTSVB succ_JSVB succ_LTSVB succ_LSVB succ_StTSVB succ_StSVB]]
         succ=[succ; [succ_JTSVB succ_JSVB succ_LTSVB succ_LSVB succ_StTSVB succ_StSVB]]
-
-%         err_BSBL_EM=err_BSBL_EM/k;
-%         err_BSBL_BO=err_BSBL_BO/k;
+        
+        %         err_BSBL_EM=err_BSBL_EM/k;
+        %         err_BSBL_BO=err_BSBL_BO/k;
         err_Jeffrey_tsvb=err_Jeffrey_tsvb/k;
         err_Laplace_tsvb=err_Laplace_tsvb/k;
         err_St_tsvb=err_St_tsvb/k;
         err_Jeffrey_svb=err_Jeffrey_svb/k;
         err_Laplace_svb=err_Laplace_svb/k;
         err_St_svb=err_St_svb/k;
-%         err=[err; [err_BSBL_EM err_BSBL_BO err_Jeffrey_tsvb err_Jeffrey_svb err_Laplace_tsvb err_Laplace_svb err_St_tsvb err_St_svb]]
+        %         err=[err; [err_BSBL_EM err_BSBL_BO err_Jeffrey_tsvb err_Jeffrey_svb err_Laplace_tsvb err_Laplace_svb err_St_tsvb err_St_svb]]
         err=[err; [err_Jeffrey_tsvb err_Jeffrey_svb err_Laplace_tsvb err_Laplace_svb err_St_tsvb err_St_svb]]
     end
+    FigHandle = figure;
+    set(FigHandle, 'Position', [100, 100, 520, 380]);
+    % semilogy(0.1:0.05:0.5,err(:,1),'-.r*')
+    % hold on
+    % semilogy(0.1:0.05:0.5,err(:,2),'r--o')
+    % hold on
+    semilogy(0.1:0.05:0.5,err(:,1),'-.b*')
+    hold on
+    semilogy(0.1:0.05:0.5,err(:,2),'b--o')
+    hold on
+    semilogy(0.1:0.05:0.5,err(:,3),'-.g*')
+    hold on
+    semilogy(0.1:0.05:0.5,err(:,4),'g--o')
+    hold on
+    semilogy(0.1:0.05:0.5,err(:,5),'-.k*')
+    hold on
+    semilogy(0.1:0.05:0.5,err(:,6),'k--o')
+    a_t=title(sprintf('rho=%g, Block Size=%g, SNR=%g dB',rho,block_size,SNR));
+    set(a_t,'FontSize',12,'FontWeight','bold')
+    a_l=legend({'cJSVB';'JSVB'; 'cLSVB';'LSVB';'cStSVB'; 'StSVB'});
+    set(a_l,'FontSize',10,'FontWeight','bold');
+    a_y=ylabel(' Relative Reconstruction Error');
+    set(a_y,'FontSize',12,'FontWeight','bold');
+    xlabel('M/N');
+    set(gca,'XTick', [0.1:0.05:0.5], 'FontSize',12,'FontWeight','bold');
+    saveas(FigHandle,strcat('Fig4_rho=',num2str(rho),'_BlockSize=',num2str(block_size),'RelativeReconstructionError','.png'));
+    
+    figure
+    plot(0.1:0.05:0.5,(1-(succ(:,1)/k)),'-.b*')
+    hold on
+    plot(0.1:0.05:0.5,(1-(succ(:,2)/k)),'b--o')
+    hold on
+    plot(0.1:0.05:0.5,(1-(succ(:,3)/k)),'-.g*')
+    hold on
+    plot(0.1:0.05:0.5,(1-(succ(:,4)/k)),'g--o')
+    hold on
+    plot(0.1:0.05:0.5,(1-(succ(:,5)/k)),'-.k*')
+    hold on
+    plot(0.1:0.05:0.5,(1-(succ(:,6)/k)),'k--o')
+    a_t=title(sprintf('rho=%g, Block Size=%g, SNR=%g dB',rho,block_size,SNR));
+    set(a_t,'FontSize',12,'FontWeight','bold')
+    a_l=legend({'cJSVB';'JSVB'; 'cLSVB';'LSVB';'cStSVB'; 'StSVB'});
+    set(a_l,'FontSize',10,'FontWeight','bold');
+    a_y=ylabel('Failure rate');
+    set(a_y,'FontSize',12,'FontWeight','bold');
+    xlabel('M/N');
+    set(gca,'XTick', [0.1:0.05:0.5], 'FontSize',12,'FontWeight','bold');
+    
+    saveas(FigHandle,strcat('Fig4_rho=',num2str(rho),'_BlockSize=',num2str(block_size),'FailureRate','.png'));
 end
-FigHandle = figure;
-set(FigHandle, 'Position', [100, 100, 520, 380]);
-% semilogy(0.1:0.05:0.5,err(:,1),'-.r*')
-% hold on
-% semilogy(0.1:0.05:0.5,err(:,2),'r--o')
-% hold on
-semilogy(0.1:0.05:0.5,err(:,1),'-.b*')
-hold on
-semilogy(0.1:0.05:0.5,err(:,2),'b--o')
-hold on
-semilogy(0.1:0.05:0.5,err(:,3),'-.g*')
-hold on
-semilogy(0.1:0.05:0.5,err(:,4),'g--o')
-hold on
-semilogy(0.1:0.05:0.5,err(:,5),'-.k*')
-hold on
-semilogy(0.1:0.05:0.5,err(:,6),'k--o')
-a_t=title('\rho=0.8, Group Size=3, SNR=25dB');
-set(a_t,'FontSize',12,'FontWeight','bold')
-a_l=legend({'cJSVB';'JSVB'; 'cLSVB';'LSVB';'cStSVB'; 'StSVB'});
-set(a_l,'FontSize',10,'FontWeight','bold');
-a_y=ylabel(' Relative Reconstruction Error');
-set(a_y,'FontSize',12,'FontWeight','bold');
-xlabel('M/N');
-set(gca,'XTick', [0.1:0.05:0.5], 'FontSize',12,'FontWeight','bold');
-
-figure
-plot(0.1:0.05:0.5,(1-(succ(:,1)/k)),'-.b*')
-hold on
-plot(0.1:0.05:0.5,(1-(succ(:,2)/k)),'b--o')
-hold on
-plot(0.1:0.05:0.5,(1-(succ(:,3)/k)),'-.g*')
-hold on
-plot(0.1:0.05:0.5,(1-(succ(:,4)/k)),'g--o')
-hold on
-plot(0.1:0.05:0.5,(1-(succ(:,5)/k)),'-.k*')
-hold on
-plot(0.1:0.05:0.5,(1-(succ(:,6)/k)),'k--o')
-a_t=title('\rho=0.99, Group Size=3, SNR=25dB');
-set(a_t,'FontSize',12,'FontWeight','bold')
-a_l=legend({'cJSVB';'JSVB'; 'cLSVB';'LSVB';'cStSVB'; 'StSVB'});
-set(a_l,'FontSize',10,'FontWeight','bold');
-a_y=ylabel('Failure rate');
-set(a_y,'FontSize',12,'FontWeight','bold');
-xlabel('M/N');
-set(gca,'XTick', [0.1:0.05:0.5], 'FontSize',12,'FontWeight','bold');
-

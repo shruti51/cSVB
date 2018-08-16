@@ -237,5 +237,5 @@ for rho=[0 0.7 0.99]
     set(a_y,'FontSize',12,'FontWeight','bold');
     xlabel('Group Size');
     set(gca,'XTick', [1,2,3,4,6], 'FontSize',12,'FontWeight','bold');
-    
+    saveas(FigHandle,strcat('fig3_rho=',num2str(rho),'.png'));
 end
