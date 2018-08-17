@@ -253,7 +253,7 @@ for rho=[0 0.7 0.99]
     set(gca,'XTick', [0.1:0.05:0.5], 'FontSize',12,'FontWeight','bold');
     saveas(FigHandle,strcat('Fig4_rho=',num2str(rho),'_BlockSize=',num2str(block_size),'RelativeReconstructionError','.png'));
     
-    figure
+    FigHandle=figure;
     plot(0.1:0.05:0.5,(1-(succ(:,1)/k)),'-.b*')
     hold on
     plot(0.1:0.05:0.5,(1-(succ(:,2)/k)),'b--o')
